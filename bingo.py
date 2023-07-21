@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 def playbingo(called, data):
     # called = [[column, num], [column, num], [column, num], etc]
     # data = [[[card 1 row 1 data], [card 1 row 2 data], [card 1 row 3 data], [card 1 row 4 data], [card 1 row 5 data]], [[card 2 row 1 data], [card 2 row 2 data], [card 2 row 3 data], [card 2 row 4 data], [card 2 row 5 data]]]
@@ -61,3 +63,88 @@ def checkdiagonals(card):
         if len(set(diag)) == 1 and diag[0] == -1:
             return True
     return False
+
+cards = [
+    [
+        [1, 11, 21, 31, 41],
+        [2, 12, 22, 32, 42],
+        [3, 13, -1, 33, 43],
+        [4, 14, 24, 34, 44],
+        [5, 15, 25, 35, 45]
+    ],
+    [
+        [6, 16, 26, 36, 41],
+        [7, 17, 27, 37, 47],
+        [8, 18, -1, 38, 48],
+        [9, 19, 29, 39, 49],
+        [10, 20, 30, 40, 50]
+    ],
+]
+
+horizontalrowwin = [
+    [0, 1],
+    [1, 11],
+    [2, 21],
+    [3, 31],
+    [4, 41]
+]
+
+verticalcolumnwin = [
+    [0, 1],
+    [0, 2],
+    [0, 3],
+    [0, 4],
+    [0, 5]
+]
+
+diagonalwin = [
+    [0, 1],
+    [1, 12],
+    [2, 23], # doesnt matter, this is a free space
+    [3, 34],
+    [4, 45]
+]
+
+twowinners = [
+    [0, 1],
+    [0, 6],
+    [1, 11],
+    [1, 16],
+    [2, 21],
+    [2, 26],
+    [3, 31],
+    [3, 36],
+    [4, 41]
+]
+
+cardtwowinhorizontal = [
+    [0, 6],
+    [1, 16],
+    [2, 26],
+    [3,36],
+    [4, 41]
+]
+
+cardtwowinvertical = [
+    [0, 6],
+    [0, 7],
+    [0, 8],
+    [0, 9],
+    [0, 10]
+]
+
+cardtwowindiagonal = [
+    [0, 10],
+    [1, 19],
+    [2, 26], # doesnt matter, free space
+    [3, 37],
+    [4, 41]
+]
+
+print('card one wins horizontally', playbingo(horizontalrowwin, deepcopy(cards)))
+print('card one wins vertically', playbingo(verticalcolumnwin, deepcopy(cards)))
+print('card one wins diagonally', playbingo(diagonalwin, deepcopy(cards)))
+print('both cards win', playbingo(twowinners, deepcopy(cards)))
+print('card two wins horizontally', playbingo(cardtwowinhorizontal, deepcopy(cards)))
+print('card two wins vertically', playbingo(cardtwowinvertical, deepcopy(cards)))
+print('card two wins diagonally', playbingo(cardtwowindiagonal, deepcopy(cards)))
