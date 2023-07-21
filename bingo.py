@@ -141,6 +141,14 @@ cardtwowindiagonal = [
     [4, 41]
 ]
 
+nowinner = [
+    [0, 7],
+    [1, 18],
+    [2, 22], 
+    [3, 34],
+    [4, 45]
+]
+
 print('card one wins horizontally', playbingo(horizontalrowwin, deepcopy(cards)))
 print('card one wins vertically', playbingo(verticalcolumnwin, deepcopy(cards)))
 print('card one wins diagonally', playbingo(diagonalwin, deepcopy(cards)))
@@ -148,3 +156,4 @@ print('both cards win', playbingo(twowinners, deepcopy(cards)))
 print('card two wins horizontally', playbingo(cardtwowinhorizontal, deepcopy(cards)))
 print('card two wins vertically', playbingo(cardtwowinvertical, deepcopy(cards)))
 print('card two wins diagonally', playbingo(cardtwowindiagonal, deepcopy(cards)))
+print('no winner', playbingo(nowinner, deepcopy(cards)))
