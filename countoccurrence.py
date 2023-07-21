@@ -1,7 +1,7 @@
 def countoccurrence(text):
-    asciichars = sorted([ord(item) for item in text])
+    asciichars = [ord(item) for item in text]
     result = []
-    for i in set(asciichars):
+    for i in sorted(set(asciichars)):
         found = [item for item in asciichars if item == i]
         result.append([chr(i), len(found)])
     return result

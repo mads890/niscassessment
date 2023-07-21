@@ -1,4 +1,4 @@
-from copy import deepcopy
+from copy import deepcopy # lets us use the same card data for multiple function calls
 
 def playbingo(called, data):
     # called = [[column, num], [column, num], [column, num], etc]
