@@ -20,4 +20,4 @@ should output the same result given in the instructions example - feel free to c
 
 In terminal: `python3 bingo.py`
 
-Data includes 2 cards and winning calls for each card horizontally, vertically, and diagonally (console output will tell you which is which). Also includes one test case where both cards win on the same call. Feel free to add cards or call data in `bingo.py`! 
+Data includes 2 cards and winning calls for each card horizontally, vertically, and diagonally (console output will tell you which is which). Also includes one test case where both cards win on the same call and one where neither card wins. Feel free to add cards or call data in `bingo.py`! 
