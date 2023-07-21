@@ -1,3 +1,57 @@
+class Card:
+    def __init__(self, rows, idx):
+        self.cardindex = idx
+        
+        # rows and columns
+        self.rowsets = []
+        self.colsets = []
+        rowtoadd = set()
+        coltoadd = set()
+        for i in range(5):
+            rowtoadd.update(tuple((rows[i].index(item), item) for item in rows[i]))
+            self.rowsets.append(rowtoadd)
+            rowtoadd = set()
+            coltoadd.update(tuple((i, row[i]) for row in rows))
+            self.colsets.append(coltoadd)
+            coltoadd = set()
+        
+        # diagonals
+        diagtop = set()
+        diagbottom = set()
+        for i in range(5):
+            diagtop.add((i, rows[i][i]))
+            diagbottom.add((i, rows[4 - i][i]))
+        self.diagsets = [diagtop, diagbottom]
+
+    def iswinner(self, calledset):
+        for rowset in self.rowsets:
+            remainder = rowset - calledset
+            if len(remainder) == 0:
+                return True
+        for colset in self.colsets:
+            remainder = colset - calledset
+            if len(remainder) == 0:
+                return True
+        for diagset in self.diagsets:
+            remainder = diagset - calledset
+            if len(remainder) == 0:
+                return True
+        return False
+
+def playbingo(called, cards):
+    winners = []
+    calledset = {(2, -1)} # free space
+    cardobjects = [Card(card, cards.index(card)) for card in cards]
+    for call in called:
+        calledset.add(tuple(call))
+        if len(calledset) < 5:
+            continue
+        for cardobj in cardobjects:
+            if cardobj.iswinner(calledset):
+                winners.append(cardobj.cardindex)
+        if len(winners) != 0:
+            return winners
+
 cards = [
     [
         [1, 11, 21, 31, 41],
@@ -82,60 +136,6 @@ nowinner = [
     [3, 34],
     [4, 45]
 ]
-
-class Card:
-    def __init__(self, rows, idx):
-        self.cardindex = idx
-        
-        # rows and columns
-        self.rowsets = []
-        self.colsets = []
-        rowtoadd = set()
-        coltoadd = set()
-        for i in range(5):
-            rowtoadd.update(tuple((rows[i].index(item), item) for item in rows[i]))
-            self.rowsets.append(rowtoadd)
-            rowtoadd = set()
-            coltoadd.update(tuple((i, row[i]) for row in rows))
-            self.colsets.append(coltoadd)
-            coltoadd = set()
-        
-        # diagonals
-        diagtop = set()
-        diagbottom = set()
-        for i in range(5):
-            diagtop.add((i, rows[i][i]))
-            diagbottom.add((i, rows[4 - i][i]))
-        self.diagsets = [diagtop, diagbottom]
-
-    def iswinner(self, calledset):
-        for rowset in self.rowsets:
-            remainder = rowset - calledset
-            if len(remainder) == 0:
-                return True
-        for colset in self.colsets:
-            remainder = colset - calledset
-            if len(remainder) == 0:
-                return True
-        for diagset in self.diagsets:
-            remainder = diagset - calledset
-            if len(remainder) == 0:
-                return True
-        return False
-
-def playbingo(called, cards):
-    winners = []
-    calledset = {(2, -1)} # free space
-    cardobjects = [Card(card, cards.index(card)) for card in cards]
-    for call in called:
-        calledset.add(tuple(call))
-        if len(calledset) < 5:
-            continue
-        for cardobj in cardobjects:
-            if cardobj.iswinner(calledset):
-                winners.append(cardobj.cardindex)
-        if len(winners) != 0:
-            return winners
 
 print('card one wins horizontally', playbingo(horizontalrowwin, cards))
 print('card one wins vertically', playbingo(verticalcolumnwin, cards))
