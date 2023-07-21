@@ -25,16 +25,13 @@ class Card:
 
     def iswinner(self, called):
         for row in self.rows:
-            remainder = row - called
-            if len(remainder) == 0:
+            if len(row - called) == 0:
                 return True
         for column in self.columns:
-            remainder = column - called
-            if len(remainder) == 0:
+            if len(column - called) == 0:
                 return True
         for diagonal in self.diagonals:
-            remainder = diagonal - called
-            if len(remainder) == 0:
+            if len(diagonal - called) == 0:
                 return True
         return False
 
