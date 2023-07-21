@@ -108,6 +108,21 @@ class Card:
             diagbottom.add((i, rows[4 - i][i]))
         self.diagsets = [diagtop, diagbottom]
 
+    def iswinner(self, calledset):
+        for rowset in self.rowsets:
+            remainder = rowset - calledset
+            if len(remainder) == 0:
+                return True
+        for colset in self.colsets:
+            remainder = colset - calledset
+            if len(remainder) == 0:
+                return True
+        for diagset in self.diagsets:
+            remainder = diagset - calledset
+            if len(remainder) == 0:
+                return True
+        return False
+
 def playbingo(called, cards):
     winners = []
     calledset = {(2, -1)} # free space
@@ -117,25 +132,10 @@ def playbingo(called, cards):
         if len(calledset) < 5:
             continue
         for cardobj in cardobjects:
-            if iswinner(cardobj, calledset):
+            if cardobj.iswinner(calledset):
                 winners.append(cardobj.cardindex)
         if len(winners) != 0:
             return winners
-
-def iswinner(card, calledset):
-    for rowset in card.rowsets:
-        setleft = rowset - calledset
-        if len(setleft) == 0:
-            return True
-    for colset in card.colsets:
-        setleft = colset - calledset
-        if len(setleft) == 0:
-            return True
-    for diagset in card.diagsets:
-        setleft = diagset - calledset
-        if len(setleft) == 0:
-            return True
-    return False
 
 print('card one wins horizontally', playbingo(horizontalrowwin, cards))
 print('card one wins vertically', playbingo(verticalcolumnwin, cards))
