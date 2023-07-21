@@ -3,16 +3,16 @@ class Card:
         self.cardindex = idx
         
         # rows and columns
-        self.rowsets = []
-        self.colsets = []
+        self.rows = []
+        self.columns = []
         rowtoadd = set()
         coltoadd = set()
         for i in range(5):
             rowtoadd.update(tuple((rows[i].index(item), item) for item in rows[i]))
-            self.rowsets.append(rowtoadd)
+            self.rows.append(rowtoadd)
             rowtoadd = set()
             coltoadd.update(tuple((i, row[i]) for row in rows))
-            self.colsets.append(coltoadd)
+            self.columns.append(coltoadd)
             coltoadd = set()
         
         # diagonals
@@ -21,19 +21,19 @@ class Card:
         for i in range(5):
             diagtop.add((i, rows[i][i]))
             diagbottom.add((i, rows[4 - i][i]))
-        self.diagsets = [diagtop, diagbottom]
+        self.diagonals = [diagtop, diagbottom]
 
-    def iswinner(self, calledset):
-        for rowset in self.rowsets:
-            remainder = rowset - calledset
+    def iswinner(self, called):
+        for row in self.rows:
+            remainder = row - called
             if len(remainder) == 0:
                 return True
-        for colset in self.colsets:
-            remainder = colset - calledset
+        for column in self.columns:
+            remainder = column - called
             if len(remainder) == 0:
                 return True
-        for diagset in self.diagsets:
-            remainder = diagset - calledset
+        for diagonal in self.diagonals:
+            remainder = diagonal - called
             if len(remainder) == 0:
                 return True
         return False
