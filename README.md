@@ -1,6 +1,6 @@
 # NISC Technical Assessment
 
-Thank you for considering my application! 
+Thank you for considering my application! Please let me know if any further info is required for this assessment.
 
 ## What language is your assessment written in? 
 
@@ -8,22 +8,16 @@ python (v3.11.4)
 
 ## Test out my code!
 
-clone this repo
-open terminal and cd into the project
+open terminal, clone this repo, and cd into the project
 
 ### Count Occurrence
 
-in terminal:
-`python3 countoccurrence.py`
+In terminal: `python3 countoccurrence.py`
 
-should output the same result given in the instructions example
-feel free to change the function's argument ('Typical Sentence') in `countoccurrence.py` to any string!
+should output the same result given in the instructions example - feel free to change the function's argument ('Typical Sentence') in `countoccurrence.py` to any string!
 
 ### Play Bingo
 
-in terminal:
-`python3 bingo.py`
+In terminal: `python3 bingo.py`
 
-data includes 2 cards and winning calls for each card horizontally, vertically, and diagonally (console output will tell you which is which)
-also one test case where both cards win on the same call
-feel free to add cards or call data in `bingo.py`! 
+Data includes 2 cards and winning calls for each card horizontally, vertically, and diagonally (console output will tell you which is which). Also includes one test case where both cards win on the same call. Feel free to add cards or call data in `bingo.py`! 
